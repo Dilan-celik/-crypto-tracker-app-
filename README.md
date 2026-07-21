@@ -1,50 +1,45 @@
-# Welcome to your Expo app 👋
+# Crypto Tracker App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+React Native ve Expo altyapısı kullanılarak geliştirilmiş, canlı kripto para piyasası verilerini takip etmeyi sağlayan, modern ve performanslı bir mobil uygulama projesidir.
 
-## Get started
+Proje, hem **Expo Go** ekosistemi üzerinden hızlı prototiplemeye hem de **React Native CLI** mantığına uyumlu modüler bir mimariye dayalı olarak inşa edilmiştir.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## 📌 Proje Özellikleri
 
-2. Start the app
+* **Canlı Piyasa Verileri:** CoinGecko REST API entegrasyonu sayesinde piyasadaki en popüler kripto varlıkların anlık fiyatları ve 24 saatlik yüzde değişim oranları sunulur.
+* **Dinamik Fiyat Takibi (Simülasyon):** Yenileme tetiklendiğinde veriler üzerindeki anlık dalgalanmaları (anlık değişimleri) ekran arayüzünde canlı simüle eder.
+* **Aşağı Çekerek Yenileme (Pull-to-Refresh):** Mobil UX standartlarına uygun olarak `FlatList` bileşeni üzerinden `RefreshControl` desteği barındırır.
+* **Katmanlı ve Temiz Mimari:**
+  * **TypeScript** ile tip güvenliği (Type Safety).
+  * **Custom Hooks** (`useCrypto`) ile iş mantığı (business logic) ve UI katmanının tamamen ayrılması.
+  * **Servis Katmanı** (`cryptoApi`) üzerinden modüler API yönetimi.
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 🛠️ Teknolojik Birliktelik (Expo & React Native)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Bu proje, React Native'in gücünü Expo'nun sağladığı geliştirici deneyimi (DX) ile birleştirir:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+| Teknoloji | Projedeki Rolü |
+| :--- | :--- |
+| **React Native** | Uygulamanın temelini oluşturan, köprülü (bridge) mimari ile native UI bileşenlerini (`View`, `Text`, `FlatList`) render eden ana kütüphanedir. |
+| **Expo (Expo Router)** | Build alma, dosya tabanlı yönlendirme (file-based routing), bağımlılık yönetimi ve cihazda anında test etme süreçlerini kolaylaştırır. |
+| **TypeScript** | `CryptoItem` arabirimi (interface) ile API'den gelen verilerin kod tabanında hatasız işlenmesini sağlar. |
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## 📂 Dosya ve Klasör Yapısı
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```text
+crypto-tracker-app/
+├── app/                  # Expo Router sayfa yapılandırmaları
+│   ├── _layout.tsx       # Root layout ve tema konfigürasyonları
+│   └── (tabs)/
+│       └── index.tsx     # Ana ekran (Kripto liste görünümü)
+└── src/                  # Modüler uygulama mimarisi
+    ├── components/       # UI Bileşenleri (Örn: CryptoCard)
+    ├── hooks/            # Custom React Hook'ları (Örn: useCrypto)
+    ├── services/         # API İstek Fonksiyonları (Örn: fetchCryptoData)
+    └── types/            # TypeScript Interface ve Tipleri (Örn: CryptoItem)
